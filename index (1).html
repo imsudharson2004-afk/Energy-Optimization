@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Pulse AI | Campus Energy Intelligence</title>
+    <meta name="description" content="Campus energy intelligence platform providing real-time telemetry, AI predictive demand forecasting, anomaly detection, and automated energy optimization." />
+    <meta property="og:title" content="Campus Pulse AI | Campus Energy Intelligence" />
+    <meta property="og:description" content="Campus energy intelligence platform providing real-time telemetry, AI predictive demand forecasting, anomaly detection, and automated energy optimization." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     BACKGROUND EFFECTS
+========================================================= -->
+
+<div class="background-grid"></div>
+<div class="glow glow-one"></div>
+<div class="glow glow-two"></div>
+
+
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
+
+<div class="app">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            <i class="fa-solid fa-bolt"></i>
+        </div>
+
+        <div class="brand-text">
+            <h2>Campus Pulse<span> AI</span></h2>
+            <p>CAMPUS ENERGY INTELLIGENCE</p>
+        </div>
+
+    </div>
+
+
+    <div class="campus-selector">
+
+        <span>CAMPUS</span>
+
+        <div>
+            <strong>FMCET Campus</strong>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+    </div>
+
+
+    <nav class="navigation">
+
+        <div class="nav-section">
+            <span>COMMAND CENTER</span>
+        </div>
+
+        <a href="#dashboard" class="nav-link active" data-section="dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="#live-monitor" class="nav-link" data-section="live-monitor">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <span>Live Monitor</span>
+            <b class="live-dot"></b>
+        </a>
+
+        <a href="#demand" class="nav-link" data-section="demand">
+            <i class="fa-solid fa-wave-square"></i>
+            <span>Energy Demand</span>
+        </a>
+
+
+        <div class="nav-section">
+            <span>INTELLIGENCE</span>
+        </div>
+
+        <a href="#anomalies" class="nav-link" data-section="anomalies">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Abnormalities</span>
+            <b class="notification-count" id="navAnomalyCount">4</b>
+        </a>
+
+        <a href="#forecast" class="nav-link" data-section="forecast">
+            <i class="fa-solid fa-brain"></i>
+            <span>AI Prediction</span>
+        </a>
+
+        <a href="#comparison" class="nav-link" data-section="comparison">
+            <i class="fa-solid fa-code-compare"></i>
+            <span>Baseline Compare</span>
+        </a>
+
+
+        <div class="nav-section">
+            <span>CAMPUS</span>
+        </div>
+
+        <a href="#buildings" class="nav-link" data-section="buildings">
+            <i class="fa-solid fa-building"></i>
+            <span>Buildings</span>
+        </a>
+
+        <a href="#events" class="nav-link" data-section="events">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Events</span>
+        </a>
+
+        <a href="#sustainability" class="nav-link" data-section="sustainability">
+            <i class="fa-solid fa-leaf"></i>
+            <span>Sustainability</span>
+        </a>
+
+
+        <div class="nav-section">
+            <span>ACTIONS</span>
+        </div>
+
+        <a href="#recommendations" class="nav-link" data-section="recommendations">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>AI Actions</span>
+        </a>
+
+        <a href="#reports" class="nav-link" data-section="reports">
+            <i class="fa-solid fa-file-chart-column"></i>
+            <span>Reports</span>
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="ai-status">
+
+            <div class="status-light"></div>
+
+            <div>
+                <strong>AI ENGINE ONLINE</strong>
+                <small id="aiStatusSub">Telemetry synchronized</small>
+            </div>
+
+            <i class="fa-solid fa-wifi"></i>
+
+        </div>
+
+
+        <div class="user-profile" id="userProfileBar" style="cursor: pointer;" title="Click to view user profile / logout">
+
+            <div class="user-avatar" id="sidebarAvatar">
+                SA
+            </div>
+
+            <div>
+                <strong id="sidebarUsername">Sudharson A.</strong>
+                <small id="sidebarRole">Energy Analyst</small>
+            </div>
+
+            <button id="logoutBtn" style="background: transparent; border: 0; color: var(--muted-2); margin-left: auto; cursor: pointer; padding: 4px;" title="Sign out">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN AREA
+========================================================= -->
+
+<main class="main">
+
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<header class="topbar">
+
+    <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+
+    <div class="breadcrumb">
+
+        <span>FMCET</span>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <strong>Energy Intelligence</strong>
+
+    </div>
+
+
+    <div class="topbar-right">
+
+        <div class="system-live">
+
+            <span></span>
+
+            SYSTEM LIVE
+
+        </div>
+
+
+        <button class="top-icon" id="dateFilterBtn" title="Current Campus Time">
+            <i class="fa-regular fa-calendar"></i>
+        </button>
+
+        <button class="top-icon" id="notificationButton" title="Active Anomaly Alerts">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <b id="topbarAnomalyBadge">4</b>
+
+        </button>
+
+
+        <div class="top-user" id="topUserBadge" title="Logged in Analyst">
+            SA
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     CONTENT
+========================================================= -->
+
+<div class="content">
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero section" id="dashboard">
+
+    <div class="hero-left">
+
+        <div class="eyebrow">
+
+            <span></span>
+
+            SMART CAMPUS ENERGY COMMAND CENTER
+
+        </div>
+
+        <h1>
+            Campus energy,
+            <span>under intelligence.</span>
+        </h1>
+
+        <p>
+            Monitor every watt. Detect abnormal consumption.
+            Predict demand. Reduce unnecessary energy use.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <button class="primary-button" id="analysisButton">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Run AI Analysis
+
+            </button>
+
+
+            <button class="secondary-button" id="refreshButton">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh Live Data
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-right">
+
+        <div class="energy-orbit">
+
+            <div class="orbit-ring ring-one"></div>
+            <div class="orbit-ring ring-two"></div>
+
+            <div class="energy-core">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <strong id="heroPower">
+                    1,284
+                </strong>
+
+                <span>kW LIVE</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SCENARIO SELECTOR
+========================================================= -->
+
+<section class="scenario-panel">
+
+    <div>
+
+        <span class="section-label">
+            DEMO SCENARIO
+        </span>
+
+        <h3>
+            Explore different campus operating conditions
+        </h3>
+
+        <p>
+            Switch between historical normal days, event days and
+            sports days to demonstrate how the AI detects unusual demand.
+        </p>
+
+    </div>
+
+
+    <div class="scenario-buttons">
+
+        <button class="scenario active" data-scenario="normal">
+
+            <i class="fa-solid fa-sun"></i>
+
+            Normal Day
+
+        </button>
+
+        <button class="scenario" data-scenario="event">
+
+            <i class="fa-solid fa-calendar-star"></i>
+
+            Event Day
+
+        </button>
+
+        <button class="scenario" data-scenario="sports">
+
+            <i class="fa-solid fa-futbol"></i>
+
+            Sports Day
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     KPI CARDS
+========================================================= -->
+
+<section class="kpi-grid section">
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-header">
+
+            <span>LIVE POWER</span>
+
+            <div class="kpi-icon green">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+        </div>
+
+        <div class="kpi-number">
+
+            <strong id="livePower">
+                1,284
+            </strong>
+
+            <small>kW</small>
+
+        </div>
+
+        <div class="kpi-change positive" id="livePowerChange">
+
+            <i class="fa-solid fa-arrow-down"></i>
+
+            8.4%
+
+            <span>vs baseline</span>
+
+        </div>
+
+        <div class="mini-chart">
+
+            <span style="height:35%"></span>
+            <span style="height:48%"></span>
+            <span style="height:42%"></span>
+            <span style="height:63%"></span>
+            <span style="height:51%"></span>
+            <span style="height:70%"></span>
+            <span style="height:59%"></span>
+            <span style="height:44%"></span>
+            <span style="height:52%"></span>
+            <span style="height:37%"></span>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-header">
+
+            <span>EXPECTED DEMAND</span>
+
+            <div class="kpi-icon blue">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+        </div>
+
+        <div class="kpi-number">
+
+            <strong id="expectedDemand">
+                1,390
+            </strong>
+
+            <small>kW</small>
+
+        </div>
+
+        <div class="kpi-change positive" id="expectedStatus">
+
+            <i class="fa-solid fa-check"></i>
+
+            Within safe limit
+
+        </div>
+
+        <div class="progress-line">
+
+            <span style="width:77%" id="expectedProgressSpan"></span>
+
+        </div>
+
+        <small class="target-text">
+            Peak threshold: 1,800 kW
+        </small>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-header">
+
+            <span>UNWANTED USAGE</span>
+
+            <div class="kpi-icon orange">
+                <i class="fa-solid fa-plug-circle-xmark"></i>
+            </div>
+
+        </div>
+
+        <div class="kpi-number">
+
+            <strong id="wastePower">
+                126
+            </strong>
+
+            <small>kW</small>
+
+        </div>
+
+        <div class="kpi-change warning" id="wasteChange">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <span id="wastePercentText">9.8%</span>
+
+            <span>of live load</span>
+
+        </div>
+
+        <div class="waste-bar">
+
+            <span id="wasteBar"></span>
+
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-header">
+
+            <span>MONTHLY SAVING</span>
+
+            <div class="kpi-icon purple">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+
+        </div>
+
+        <div class="kpi-number">
+
+            <strong id="monthlySaving">
+                ₹28.6K
+            </strong>
+
+        </div>
+
+        <div class="kpi-change positive">
+
+            <i class="fa-solid fa-arrow-trend-down"></i>
+
+            Cost reduced
+
+        </div>
+
+        <div class="saving-goal">
+
+            <div>
+                <span>Goal</span>
+                <strong id="savingGoalPercent">71%</strong>
+            </div>
+
+            <div class="goal-line">
+                <span id="savingGoalBar" style="width: 71%;"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     LIVE MONITOR
+========================================================= -->
+
+<section class="section" id="live-monitor">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                <span class="green-indicator"></span>
+                REAL-TIME TELEMETRY
+            </div>
+
+            <h2>
+                Live campus monitoring
+            </h2>
+
+            <p>
+                Power supply and consumption across every monitored zone.
+            </p>
+
+        </div>
+
+        <div class="last-sync">
+
+            <span></span>
+
+            Last updated <strong id="lastUpdated">just now</strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="monitor-grid">
+
+
+        <div class="large-panel live-chart-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Live Power Consumption
+                    </h3>
+
+                    <p>
+                        Actual load vs expected historical profile
+                    </p>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <span>
+                        <i class="legend-dot actual"></i>
+                        Actual
+                    </span>
+
+                    <span>
+                        <i class="legend-line expected"></i>
+                        Expected
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container large">
+                <canvas id="liveChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="large-panel power-status-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Power Supply
+                    </h3>
+
+                    <p>
+                        Main campus electrical feed
+                    </p>
+
+                </div>
+
+                <span class="status-pill healthy" id="gridStatusPill">
+                    NORMAL
+                </span>
+
+            </div>
+
+
+            <div class="power-gauge">
+
+                <div class="gauge-ring" id="gaugeRing">
+
+                    <div>
+
+                        <strong id="supplyValue">
+                            415
+                        </strong>
+
+                        <span>V</span>
+
+                        <small>GRID VOLTAGE</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="supply-stats">
+
+                <div>
+                    <span>Frequency</span>
+                    <strong id="gridFrequency">49.98 Hz</strong>
+                </div>
+
+                <div>
+                    <span>Power Factor</span>
+                    <strong id="gridPF">0.94</strong>
+                </div>
+
+                <div>
+                    <span>Current</span>
+                    <strong id="gridCurrent">1,842 A</strong>
+                </div>
+
+                <div>
+                    <span>Grid Status</span>
+                    <strong class="green-text" id="gridStatusLabel">Stable</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BUILDINGS
+========================================================= -->
+
+<section class="section" id="buildings">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                CAMPUS ZONES
+            </div>
+
+            <h2>
+                Energy usage by building
+            </h2>
+
+            <p>
+                Compare actual consumption against each building's historical baseline.
+            </p>
+
+        </div>
+
+        <button class="outline-button" id="detailedMapBtn">
+            View detailed summary
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <div class="building-grid" id="buildingGrid">
+
+        <!-- JavaScript generates cards -->
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DEMAND ANALYSIS
+========================================================= -->
+
+<section class="section" id="demand">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                DEMAND INTELLIGENCE
+            </div>
+
+            <h2>
+                Energy demand profile
+            </h2>
+
+            <p>
+                Understand when, where and why the campus consumes energy.
+            </p>
+
+        </div>
+
+
+        <div class="time-selector">
+
+            <button class="active">24H</button>
+            <button>7D</button>
+            <button>30D</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="demand-grid">
+
+
+        <div class="large-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Demand Curve
+                    </h3>
+
+                    <p>
+                        Historical baseline + current scenario
+                    </p>
+
+                </div>
+
+                <div class="peak-indicator">
+
+                    <span></span>
+
+                    Peak:
+                    <strong id="peakDemand">
+                        1,590 kW
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+                <canvas id="demandChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="large-panel schedule-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Daily Schedule
+                    </h3>
+
+                    <p>
+                        Expected campus activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="schedule">
+
+                <div class="schedule-row">
+
+                    <span>06:00</span>
+
+                    <div>
+                        <strong>Campus startup</strong>
+                        <small>Low demand</small>
+                    </div>
+
+                    <b>420 kW</b>
+
+                </div>
+
+
+                <div class="schedule-row">
+
+                    <span>08:00</span>
+
+                    <div>
+                        <strong>Classes begin</strong>
+                        <small>Demand rising</small>
+                    </div>
+
+                    <b>910 kW</b>
+
+                </div>
+
+
+                <div class="schedule-row active">
+
+                    <span>14:00</span>
+
+                    <div>
+                        <strong>Afternoon peak</strong>
+                        <small>HVAC + labs</small>
+                    </div>
+
+                    <b>1,590 kW</b>
+
+                </div>
+
+
+                <div class="schedule-row">
+
+                    <span>18:00</span>
+
+                    <div>
+                        <strong>Campus transition</strong>
+                        <small>Demand falling</small>
+                    </div>
+
+                    <b>1,080 kW</b>
+
+                </div>
+
+
+                <div class="schedule-row">
+
+                    <span>22:00</span>
+
+                    <div>
+                        <strong>Night mode</strong>
+                        <small>Essential loads only</small>
+                    </div>
+
+                    <b>480 kW</b>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABNORMALITY DETECTION
+========================================================= -->
+
+<section class="section" id="anomalies">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label danger-label">
+                AI ANOMALY ENGINE
+            </div>
+
+            <h2>
+                Abnormal consumption detection
+            </h2>
+
+            <p>
+                Historical baseline is compared against live telemetry to identify unexpected demand.
+            </p>
+
+        </div>
+
+
+        <div class="anomaly-summary">
+
+            <strong id="anomalyCount">
+                4
+            </strong>
+
+            <span>active anomalies</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="anomaly-grid">
+
+
+        <div class="large-panel anomaly-main">
+
+            <div class="anomaly-score">
+
+                <div class="score-circle">
+
+                    <strong id="riskScore">
+                        28
+                    </strong>
+
+                    <span>RISK</span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="risk-label">
+                        CURRENT CAMPUS RISK
+                    </span>
+
+                    <h3 id="riskTitle">
+                        Low to Moderate
+                    </h3>
+
+                    <p id="riskDescription">
+                        Campus consumption is generally within expected limits,
+                        but several zones require attention.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="comparison-bars">
+
+                <div class="comparison-item">
+
+                    <div>
+                        <span>Historical expected</span>
+                        <strong id="compareExpectedText">1,410 kW</strong>
+                    </div>
+
+                    <div class="compare-track">
+                        <span style="width:72%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-item">
+
+                    <div>
+                        <span>Current consumption</span>
+                        <strong id="compareActual">1,284 kW</strong>
+                    </div>
+
+                    <div class="compare-track actual-track">
+                        <span id="actualBar" style="width:65%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-item">
+
+                    <div>
+                        <span>Unnecessary consumption</span>
+                        <strong id="compareWaste">126 kW</strong>
+                    </div>
+
+                    <div class="compare-track waste-track">
+                        <span id="wasteCompareBar" style="width:16%"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="large-panel alerts-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Detected abnormalities
+                    </h3>
+
+                    <p>
+                        AI-generated alerts
+                    </p>
+
+                </div>
+
+                <button class="text-button" id="seeAllAlertsBtn">
+                    Refresh AI
+                </button>
+
+            </div>
+
+
+            <div class="alert-list" id="anomalyAlertList">
+
+                <div class="alert-item high">
+
+                    <div class="alert-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <strong>Engineering Block (Block C)</strong>
+
+                        <p>
+                            HVAC consumption 23% above baseline.
+                        </p>
+
+                        <small>
+                            Detected 8 minutes ago · High Deviation
+                        </small>
+
+                    </div>
+
+                    <span>HIGH</span>
+
+                </div>
+
+
+                <div class="alert-item medium">
+
+                    <div class="alert-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <strong>Central Library</strong>
+
+                        <p>
+                            Lighting load continues after scheduled shutdown.
+                        </p>
+
+                        <small>
+                            Detected 31 minutes ago · Schedule Mismatch
+                        </small>
+
+                    </div>
+
+                    <span>MED</span>
+
+                </div>
+
+
+                <div class="alert-item medium">
+
+                    <div class="alert-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <strong>Workshop</strong>
+
+                        <p>
+                            Equipment load exceeds expected idle profile (+41%).
+                        </p>
+
+                        <small>
+                            Detected 42 minutes ago · Heavy Machinery
+                        </small>
+
+                    </div>
+
+                    <span>MED</span>
+
+                </div>
+
+
+                <div class="alert-item low">
+
+                    <div class="alert-icon">
+                        i
+                    </div>
+
+                    <div>
+
+                        <strong>Block D</strong>
+
+                        <p>
+                            Overnight base load slightly elevated.
+                        </p>
+
+                        <small>
+                            Detected 1 hour ago · Non-critical
+                        </small>
+
+                    </div>
+
+                    <span>LOW</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BASELINE COMPARISON
+========================================================= -->
+
+<section class="section" id="comparison">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                HISTORICAL INTELLIGENCE
+            </div>
+
+            <h2>
+                Normal day vs abnormal day
+            </h2>
+
+            <p>
+                Demonstrate how historical behavior becomes an intelligent baseline.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="comparison-dashboard">
+
+
+        <div class="comparison-card normal-day">
+
+            <div class="comparison-card-header">
+
+                <div>
+                    <span>NORMAL DAY</span>
+                    <h3>Historical Baseline</h3>
+                </div>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div class="comparison-number" id="normalDayEnergy">
+                18.7 <small>MWh</small>
+            </div>
+
+            <p>
+                Consumption followed historical operating patterns.
+            </p>
+
+            <div class="day-bars">
+
+                <span style="height:30%"></span>
+                <span style="height:40%"></span>
+                <span style="height:48%"></span>
+                <span style="height:61%"></span>
+                <span style="height:74%"></span>
+                <span style="height:65%"></span>
+                <span style="height:51%"></span>
+                <span style="height:37%"></span>
+
+            </div>
+
+        </div>
+
+
+        <div class="vs">
+            VS
+        </div>
+
+
+        <div class="comparison-card abnormal-day">
+
+            <div class="comparison-card-header">
+
+                <div>
+                    <span>ABNORMAL / EVENT DAY</span>
+                    <h3>Peak Telemetry</h3>
+                </div>
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+            <div class="comparison-number" id="abnormalDayEnergy">
+                23.9 <small>MWh</small>
+            </div>
+
+            <p id="abnormalDayDiff">
+                27.8% higher than historical expectation.
+            </p>
+
+            <div class="day-bars">
+
+                <span style="height:33%"></span>
+                <span style="height:43%"></span>
+                <span style="height:53%"></span>
+                <span style="height:80%"></span>
+                <span style="height:95%"></span>
+                <span style="height:88%"></span>
+                <span style="height:72%"></span>
+                <span style="height:56%"></span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="difference-banner">
+
+        <div class="difference-icon">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+        </div>
+
+        <div>
+
+            <strong id="differenceBannerTitle">
+                AI found a 5.2 MWh behavioral difference
+            </strong>
+
+            <p id="differenceBannerText">
+                The system identifies the deviation rather than simply displaying the number.
+                It can investigate the building, schedule and equipment responsible.
+            </p>
+
+        </div>
+
+        <div class="difference-value" id="differenceBannerValue">
+            +27.8%
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     AI FORECAST
+========================================================= -->
+
+<section class="section" id="forecast">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                PREDICTIVE ENGINE
+            </div>
+
+            <h2>
+                Tomorrow's energy demand
+            </h2>
+
+            <p>
+                Forecast generated from historical usage, occupancy and operating scenario.
+            </p>
+
+        </div>
+
+        <div class="confidence" id="confidenceBadge">
+
+            <i class="fa-solid fa-brain"></i>
+
+            94.2% prediction confidence
+
+        </div>
+
+    </div>
+
+
+    <div class="forecast-panel">
+
+        <div class="forecast-main">
+
+            <span>EXPECTED PEAK</span>
+
+            <strong id="forecastPeak">
+                1,592 <small>kW</small>
+            </strong>
+
+            <p>
+                Tomorrow at <b>14:30</b>
+            </p>
+
+        </div>
+
+
+        <div class="forecast-stat">
+
+            <span>Expected energy</span>
+
+            <strong id="forecastEnergy">20.1 MWh</strong>
+
+            <small id="forecastEnergyChange">
+                +2.4% vs today
+            </small>
+
+        </div>
+
+
+        <div class="forecast-stat">
+
+            <span>Peak risk</span>
+
+            <strong class="orange-text" id="forecastRisk">
+                Moderate
+            </strong>
+
+            <small>
+                Weather + occupancy adjusted
+            </small>
+
+        </div>
+
+
+        <div class="forecast-stat">
+
+            <span>Potential saving</span>
+
+            <strong class="green-text" id="forecastSaving">
+                ₹1,240
+            </strong>
+
+            <small>
+                If AI actions are applied
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EVENTS
+========================================================= -->
+
+<section class="section" id="events">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                EVENT INTELLIGENCE
+            </div>
+
+            <h2>
+                Event-aware energy monitoring
+            </h2>
+
+            <p>
+                Different campus events create different expected energy profiles.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="event-grid">
+
+
+        <div class="event-card">
+
+            <div class="event-image normal-bg">
+                <i class="fa-solid fa-building"></i>
+            </div>
+
+            <div class="event-content">
+
+                <span class="event-tag normal">
+                    NORMAL DAY
+                </span>
+
+                <h3>
+                    Regular Academic Day
+                </h3>
+
+                <p>
+                    Classes, laboratories, library and standard campus operations.
+                </p>
+
+                <div class="event-stats">
+
+                    <span>
+                        <b>18.7 MWh</b>
+                        expected
+                    </span>
+
+                    <span>
+                        <b>1,590 kW</b>
+                        peak
+                    </span>
+
+                </div>
+
+                <button class="event-button"
+                        data-scenario="normal">
+                    Simulate
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <div class="event-image event-bg">
+                <i class="fa-solid fa-microphone"></i>
+            </div>
+
+            <div class="event-content">
+
+                <span class="event-tag event">
+                    EVENT DAY
+                </span>
+
+                <h3>
+                    College Symposium
+                </h3>
+
+                <p>
+                    Auditorium lighting, sound systems, cooling and visitor occupancy.
+                </p>
+
+                <div class="event-stats">
+
+                    <span>
+                        <b>26.8 MWh</b>
+                        expected
+                    </span>
+
+                    <span>
+                        <b>2,020 kW</b>
+                        peak
+                    </span>
+
+                </div>
+
+                <button class="event-button"
+                        data-scenario="event">
+                    Simulate
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <div class="event-image sports-bg">
+                <i class="fa-solid fa-futbol"></i>
+            </div>
+
+            <div class="event-content">
+
+                <span class="event-tag sports">
+                    SPORTS DAY
+                </span>
+
+                <h3>
+                    Outdoor Sports Day
+                </h3>
+
+                <p>
+                    Field lighting, public-address system, food stalls and temporary loads.
+                </p>
+
+                <div class="event-stats">
+
+                    <span>
+                        <b>31.4 MWh</b>
+                        expected
+                    </span>
+
+                    <span>
+                        <b>2,480 kW</b>
+                        peak
+                    </span>
+
+                </div>
+
+                <button class="event-button"
+                        data-scenario="sports">
+                    Simulate
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SUSTAINABILITY
+========================================================= -->
+
+<section class="section" id="sustainability">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                SUSTAINABILITY
+            </div>
+
+            <h2>
+                Energy & environmental impact
+            </h2>
+
+            <p>
+                Translate energy efficiency into measurable financial and environmental outcomes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="sustainability-grid">
+
+
+        <div class="eco-card">
+
+            <div class="eco-icon green">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <span>CARBON AVOIDED</span>
+
+            <strong id="carbonAvoided">
+                2.84
+                <small>tCO₂e</small>
+            </strong>
+
+            <p>
+                This month
+            </p>
+
+            <div class="eco-progress">
+                <span style="width:71%" id="carbonProgressSpan"></span>
+            </div>
+
+            <small>
+                71% of monthly goal
+            </small>
+
+        </div>
+
+
+        <div class="eco-card">
+
+            <div class="eco-icon blue">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <span>ENERGY SAVED</span>
+
+            <strong id="energySavedDay">
+                1.72
+                <small>MWh</small>
+            </strong>
+
+            <p>
+                Today
+            </p>
+
+            <div class="eco-progress blue-progress">
+                <span style="width:64%"></span>
+            </div>
+
+            <small>
+                64% of daily target
+            </small>
+
+        </div>
+
+
+        <div class="eco-card">
+
+            <div class="eco-icon purple">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+
+            <span>COST SAVED</span>
+
+            <strong id="costSavedMonth">
+                ₹28.6K
+            </strong>
+
+            <p>
+                This month
+            </p>
+
+            <div class="eco-progress purple-progress">
+                <span style="width:78%"></span>
+            </div>
+
+            <small>
+                78% of monthly target
+            </small>
+
+        </div>
+
+
+        <div class="eco-card">
+
+            <div class="eco-icon orange">
+                <i class="fa-solid fa-plug"></i>
+            </div>
+
+            <span>WASTE IDENTIFIED</span>
+
+            <strong id="wasteIdentifiedPercent">
+                8.7%
+            </strong>
+
+            <p>
+                Of total consumption
+            </p>
+
+            <div class="eco-progress orange-progress">
+                <span style="width:35%"></span>
+            </div>
+
+            <small>
+                Reduction opportunity
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     AI RECOMMENDATIONS
+========================================================= -->
+
+<section class="section" id="recommendations">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label ai-label">
+                AI ENERGY COPILOT
+            </div>
+
+            <h2>
+                Recommended actions
+            </h2>
+
+            <p>
+                Turn detected patterns into practical energy-saving decisions.
+            </p>
+
+        </div>
+
+        <button class="primary-button small" id="generateActions">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Generate Actions
+        </button>
+
+    </div>
+
+
+    <div class="recommendation-grid" id="recommendationGrid">
+
+
+        <div class="recommendation-card featured">
+
+            <div class="rec-top">
+
+                <span class="ai-tag">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    AI RECOMMENDED
+                </span>
+
+                <strong>
+                    ₹8,640/mo
+                </strong>
+
+            </div>
+
+            <h3>
+                Optimize Engineering Block HVAC
+            </h3>
+
+            <p>
+                Current HVAC consumption is 23% above the historical profile.
+                Increase setpoint by 1°C during low-occupancy periods and shift
+                pre-cooling by 30 minutes.
+            </p>
+
+            <div class="rec-data">
+
+                <span>
+                    <i class="fa-solid fa-bolt"></i>
+                    142 kWh/day
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-leaf"></i>
+                    0.12 tCO₂e
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Low risk
+                </span>
+
+            </div>
+
+            <button class="review-button" data-title="Optimize Engineering Block HVAC" data-savings="₹8,640/mo" data-details="Current HVAC consumption is 23% above the historical profile. Adjusting chiller setpoint by 1°C during lecture breaks recovers 142 kWh/day without impacting occupant thermal comfort.">
+                Review recommendation
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="recommendation-card">
+
+            <div class="rec-top">
+
+                <span class="ai-tag">
+                    AUTOMATION
+                </span>
+
+                <strong>
+                    ₹5,180/mo
+                </strong>
+
+            </div>
+
+            <h3>
+                Schedule Library Lighting
+            </h3>
+
+            <p>
+                Lighting remains active after normal closing hours.
+                Automatically switch non-critical zones into night mode.
+            </p>
+
+            <div class="rec-data">
+
+                <span>
+                    <i class="fa-solid fa-bolt"></i>
+                    86 kWh/day
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-leaf"></i>
+                    0.07 tCO₂e
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Low risk
+                </span>
+
+            </div>
+
+            <button class="review-button" data-title="Schedule Library Lighting" data-savings="₹5,180/mo" data-details="Photocell and schedule telemetry indicates library floors 2 and 3 remain illuminated post 21:00. Auto-dimming schedule can save ₹5,180 per month.">
+                Review recommendation
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="recommendation-card">
+
+            <div class="rec-top">
+
+                <span class="ai-tag">
+                    PEAK CONTROL
+                </span>
+
+                <strong>
+                    ₹4,600/mo
+                </strong>
+
+            </div>
+
+            <h3>
+                Stagger Workshop Loads
+            </h3>
+
+            <p>
+                Three flexible equipment cycles overlap during the 18:00–20:00
+                peak window. Shift them outside the peak period.
+            </p>
+
+            <div class="rec-data">
+
+                <span>
+                    <i class="fa-solid fa-bolt"></i>
+                    74 kWh/day
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-leaf"></i>
+                    0.05 tCO₂e
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Medium risk
+                </span>
+
+            </div>
+
+            <button class="review-button" data-title="Stagger Workshop Loads" data-savings="₹4,600/mo" data-details="Workshop welding and CNC machines currently spike together at 18:00. Sequencing start cycles shifts 74 kWh from peak tariff band to standard off-peak band.">
+                Review recommendation
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REPORTS
+========================================================= -->
+
+<section class="section" id="reports">
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="section-label">
+                REPORTING
+            </div>
+
+            <h2>
+                Campus energy report
+            </h2>
+
+            <p>
+                A quick operational summary for administrators and energy teams.
+            </p>
+
+        </div>
+
+        <button class="primary-button" id="reportButton">
+            <i class="fa-solid fa-file-export"></i>
+            Generate Report
+        </button>
+
+    </div>
+
+
+    <div class="report-panel">
+
+        <div class="report-item">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <div>
+                <strong>Energy performance</strong>
+                <span>Consumption vs historical baseline</span>
+            </div>
+
+            <b id="reportPerfStatus">Ready</b>
+
+        </div>
+
+
+        <div class="report-item">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <div>
+                <strong>Abnormality report</strong>
+                <span>Detected events and affected buildings</span>
+            </div>
+
+            <b id="reportAnomalyStatus">4 alerts</b>
+
+        </div>
+
+
+        <div class="report-item">
+
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+
+            <div>
+                <strong>Cost optimization</strong>
+                <span>Estimated savings and action opportunities</span>
+            </div>
+
+            <b id="reportCostStatus">₹18.4K</b>
+
+        </div>
+
+
+        <div class="report-item">
+
+            <i class="fa-solid fa-leaf"></i>
+
+            <div>
+                <strong>Sustainability report</strong>
+                <span>Energy and carbon reduction metrics</span>
+            </div>
+
+            <b id="reportSustainStatus">2.84 t</b>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div>
+
+        <strong>Campus Pulse AI</strong>
+
+        <span>
+            Campus Energy Intelligence Platform
+        </span>
+
+    </div>
+
+    <div>
+
+        Data refresh:
+        <strong>Real-time</strong>
+
+        ·
+
+        AI Engine:
+        <strong class="green-text">Operational</strong>
+
+    </div>
+
+</footer>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+     AI MODAL
+========================================================= -->
+
+<div class="modal-overlay" id="aiModal">
+
+    <div class="modal">
+
+        <button class="modal-close" id="modalClose">
+            ×
+        </button>
+
+        <div class="modal-ai-icon">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+
+        <span class="modal-label">
+            AI ANALYSIS COMPLETE
+        </span>
+
+        <h2 id="modalHeadline">
+            Campus energy intelligence updated
+        </h2>
+
+        <p id="modalDescription">
+            Campus Pulse analyzed simulated historical and live telemetry
+            across all monitored campus zones.
+        </p>
+
+
+        <div class="modal-stat-grid">
+
+            <div>
+                <strong id="modalDataPoints">18,432</strong>
+                <span>Data points</span>
+            </div>
+
+            <div>
+                <strong id="modalAnomalies">4</strong>
+                <span>Anomalies</span>
+            </div>
+
+            <div>
+                <strong id="modalSavings">₹18.4K</strong>
+                <span>Saving potential</span>
+            </div>
+
+        </div>
+
+
+        <button class="primary-button full"
+                id="modalContinue">
+
+            View AI Recommendations
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div class="toast" id="toast">
+
+    <div class="toast-icon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <div>
+
+        <strong id="toastTitle">
+            System updated
+        </strong>
+
+        <p id="toastMessage">
+            Live data synchronized.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Campus Pulse AI",
+  "description": "Campus energy intelligence platform providing real-time telemetry, AI predictive demand forecasting, anomaly detection, and automated energy optimization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

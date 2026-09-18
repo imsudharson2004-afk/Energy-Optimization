@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EnerSight AI | Login</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Login CSS -->
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+
+        <div class="particles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <!-- Main Container -->
+    <main class="login-container">
+
+        <!-- Left Branding Section -->
+        <section class="brand-section">
+
+            <div class="brand-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+
+                <div>
+                    <h1>EnerSight <span>AI</span></h1>
+                    <p>Campus Energy Intelligence</p>
+                </div>
+
+            </div>
+
+
+            <div class="hero-content">
+
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    AI ENGINE ONLINE
+                </div>
+
+                <h2>
+                    Intelligence for a
+                    <span>Smarter Campus.</span>
+                </h2>
+
+                <p>
+                    Monitor energy consumption, predict demand,
+                    detect anomalies and discover intelligent
+                    energy-saving opportunities.
+                </p>
+
+            </div>
+
+
+            <!-- AI Pipeline -->
+            <div class="pipeline">
+
+                <div class="pipeline-item">
+                    <div class="pipeline-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <span>Monitor</span>
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <span>Predict</span>
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <span>Detect</span>
+                </div>
+
+                <div class="pipeline-line"></div>
+
+                <div class="pipeline-item">
+                    <div class="pipeline-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <span>Optimize</span>
+                </div>
+
+            </div>
+
+
+            <div class="system-info">
+
+                <div>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Secure AI Platform</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-database"></i>
+                    <span>Real-time Energy Intelligence</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Login Card -->
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <!-- Top Glow -->
+                <div class="card-glow"></div>
+
+
+                <!-- Login Header -->
+                <div class="login-header">
+
+                    <div class="mobile-logo">
+                        <div class="mobile-logo-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+
+                    <span class="welcome-label">
+                        WELCOME BACK
+                    </span>
+
+                    <h2>
+                        Sign in to
+                        <span>EnerSight</span>
+                    </h2>
+
+                    <p>
+                        Access your campus energy intelligence dashboard.
+                    </p>
+
+                </div>
+
+
+                <!-- Login Form -->
+                <form id="loginForm">
+
+                    <!-- Username -->
+                    <div class="input-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user input-icon"></i>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required
+                            >
+
+                            <span class="input-status">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="input-group">
+
+                        <div class="password-label">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <button
+                                type="button"
+                                id="forgotPasswordBtn"
+                                class="forgot-link"
+                            >
+                                Forgot password?
+                            </button>
+
+                        </div>
+
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Remember -->
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            <span class="custom-checkbox">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+
+                            <span>Remember me</span>
+
+                        </label>
+
+                        <div class="secure-login">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            Secure login
+                        </div>
+
+                    </div>
+
+
+                    <!-- Error -->
+                    <div
+                        id="loginMessage"
+                        class="login-message"
+                    ></div>
+
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="login-button"
+                    >
+
+                        <span class="button-content">
+
+                            <span id="buttonText">
+                                Sign In
+                            </span>
+
+                            <i
+                                id="buttonIcon"
+                                class="fa-solid fa-arrow-right"
+                            ></i>
+
+                        </span>
+
+                        <span
+                            id="loadingSpinner"
+                            class="loading-spinner"
+                        ></span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Demo Account -->
+                <div class="demo-account">
+
+                    <div class="demo-title">
+                        <i class="fa-solid fa-flask"></i>
+                        Hackathon Demo Access
+                    </div>
+
+                    <div class="demo-credentials">
+
+                        <div>
+                            <span>Username</span>
+                            <strong>admin</strong>
+                        </div>
+
+                        <div class="credential-divider"></div>
+
+                        <div>
+                            <span>Password</span>
+                            <strong>admin123</strong>
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="fillDemo"
+                        class="demo-button"
+                    >
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Use Demo Account
+                    </button>
+
+                </div>
+
+
+                <!-- Footer -->
+                <div class="login-footer">
+
+                    <span>
+                        <i class="fa-solid fa-lock"></i>
+                        Protected by EnerSight AI
+                    </span>
+
+                    <span>v1.0</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Forgot Password Modal -->
+    <div
+        id="forgotModal"
+        class="modal-overlay"
+    >
+
+        <div class="forgot-card">
+
+            <button
+                type="button"
+                id="closeForgot"
+                class="close-modal"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="forgot-icon">
+                <i class="fa-solid fa-key"></i>
+            </div>
+
+            <h2>Reset Access</h2>
+
+            <p>
+                Enter your username and we'll start the
+                account recovery process.
+            </p>
+
+
+            <form id="forgotForm">
+
+                <div class="input-group">
+
+                    <label for="forgotUsername">
+                        Username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user input-icon"></i>
+
+                        <input
+                            type="text"
+                            id="forgotUsername"
+                            placeholder="Enter your username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="forgotMessage"
+                    class="forgot-message"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="reset-button"
+                    id="resetButton"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Request Reset
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Login JS -->
+    <script src="login.js"></script>
+
+</body>
+</html>
